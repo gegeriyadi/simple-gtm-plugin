@@ -40,6 +40,8 @@ class Simple_Gtm_Plugin_Public {
 	 */
 	private $version;
 
+	public $containerId;
+
 	/**
 	 * Initialize the class and set its properties.
 	 *
@@ -98,6 +100,30 @@ class Simple_Gtm_Plugin_Public {
 
 		wp_enqueue_script( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'js/simple-gtm-plugin-public.js', array( 'jquery' ), $this->version, false );
 
+	}
+
+	public function get_containerId() {
+		$containerId = get_option('simple_gtm');
+
+		if (strlen($containerId) == 0) {
+			$containerId = 'GTM-XXXXXXX';
+		}
+
+		$this->containerId = $containerId;
+	}
+
+	public function simple_gtm_head_scripts() {
+
+		$this->get_containerId();
+
+		include_once( 'partials/simple-gtm-plugin-public-display-head.php' );
+	}
+
+	public function simple_gtm_body_scripts() {
+
+		$this->get_containerId();
+
+		include_once( 'partials/simple-gtm-plugin-public-display-body.php' );
 	}
 
 }
