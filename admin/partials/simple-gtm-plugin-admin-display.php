@@ -14,3 +14,23 @@
 ?>
 
 <!-- This file should primarily consist of HTML with a little bit of PHP. -->
+
+<div class="wrap">
+<h1>Simple GTM Plugin</h1>
+
+<form method="POST">
+
+<table class="form-table">
+	<tbody>
+		<tr>
+			<th scope="row">Your GTM Container ID</th>
+			<td><input type="text" name="containerId" id="containerId" value="<?= $containerId ?>" placeholder="GTM-XXXXXXX"></td>
+		</tr>
+	</tbody>
+</table>
+
+<button class="button-primary">Save Changes</button>
+
+</form>
+
+</div>

@@ -100,4 +100,29 @@ class Simple_Gtm_Plugin_Admin {
 
 	}
 
+	public function simple_gtm_plugin_options_page()
+	{
+	    add_submenu_page(
+	        'tools.php',
+	        'Simple GTM Plugin',
+	        'Simple GTM',
+	        'manage_options',
+	        'simple-gtm-plugin',
+	        array( $this, 'display_plugin_setup_page' )
+	    );
+	}
+
+	public function display_plugin_setup_page()
+	{
+		if (isset($_POST['containerId'])) {
+			update_option('simple_gtm', $_POST['containerId']);
+		}
+
+		// get option
+		$containerId = get_option('simple_gtm');
+
+		// show form on admin page
+		include_once( 'partials/simple-gtm-plugin-admin-display.php' );
+	}
+
 }
