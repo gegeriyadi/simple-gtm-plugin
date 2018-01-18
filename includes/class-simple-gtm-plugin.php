@@ -154,8 +154,8 @@ class Simple_Gtm_Plugin {
 
 		$plugin_admin = new Simple_Gtm_Plugin_Admin( $this->get_plugin_name(), $this->get_version() );
 
-		$this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_styles' );
-		$this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_scripts' );
+		// add admin menu
+		$this->loader->add_action( 'admin_menu', $plugin_admin, 'simple_gtm_plugin_options_page' );
 
 	}
 
@@ -170,8 +170,9 @@ class Simple_Gtm_Plugin {
 
 		$plugin_public = new Simple_Gtm_Plugin_Public( $this->get_plugin_name(), $this->get_version() );
 
-		$this->loader->add_action( 'wp_enqueue_scripts', $plugin_public, 'enqueue_styles' );
-		$this->loader->add_action( 'wp_enqueue_scripts', $plugin_public, 'enqueue_scripts' );
+		// call gtm script
+		$this->loader->add_action( 'wp_footer', $plugin_public, 'simple_gtm_body_scripts' );
+		$this->loader->add_action( 'wp_head', $plugin_public, 'simple_gtm_head_scripts' );
 
 	}
 
