@@ -154,8 +154,14 @@ class Simple_Gtm_Plugin {
 
 		$plugin_admin = new Simple_Gtm_Plugin_Admin( $this->get_plugin_name(), $this->get_version() );
 
+		$this->loader->add_action( 'admin_init', $plugin_admin, 'admin_init_register' );
+
 		// add admin menu
 		$this->loader->add_action( 'admin_menu', $plugin_admin, 'simple_gtm_plugin_options_page' );
+
+		// add settings link
+		$plugin_file = 'simple-gtm-plugin/simple-gtm-plugin.php';
+		$this->loader->add_filter( "plugin_action_links_$plugin_file", $plugin_admin, 'plugin_action_links' );
 
 	}
 

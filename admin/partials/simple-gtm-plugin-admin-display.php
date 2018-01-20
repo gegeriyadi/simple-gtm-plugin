@@ -15,22 +15,31 @@
 
 <!-- This file should primarily consist of HTML with a little bit of PHP. -->
 
+<?php
+if ( isset( $_GET['settings-updated'] ) ) {
+	add_settings_error( 'simple_gtm_messages', 'simple_gtm_message', __( 'Settings Saved', 'simple-gtm-group' ), 'updated' );
+}
+
+settings_errors( 'simple_gtm_messages' );
+?>
+
 <div class="wrap">
 <h1>Simple GTM Plugin</h1>
 
-<form method="POST">
+<form action="options.php" method="POST">
+	<?php settings_fields( 'simple-gtm-group' ); ?>
+	<?php do_settings_sections( 'simple-gtm-group' ); ?>
 
 <table class="form-table">
 	<tbody>
 		<tr>
-			<th scope="row">Your GTM Container ID</th>
-			<td><input type="text" name="containerId" id="containerId" value="<?= $containerId ?>" placeholder="GTM-XXXXXXX"></td>
+			<th scope="row"><label for="simplegtm_containerid">Your GTM Container ID</label></th>
+			<td><input type="text" name="simplegtm_containerid" id="simplegtm_containerid" value="<?= $containerId ?>" placeholder="GTM-XXXXXXX"></td>
 		</tr>
 	</tbody>
 </table>
 
-<button class="button-primary">Save Changes</button>
-
+<?php submit_button(); ?>
 </form>
 
 </div>

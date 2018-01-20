@@ -100,6 +100,10 @@ class Simple_Gtm_Plugin_Admin {
 
 	}
 
+	public function admin_init_register() {
+		register_setting( 'simple-gtm-group', 'simplegtm_containerid' );
+	}
+
 	public function simple_gtm_plugin_options_page()
 	{
 	    add_submenu_page(
@@ -114,15 +118,23 @@ class Simple_Gtm_Plugin_Admin {
 
 	public function display_plugin_setup_page()
 	{
-		if (isset($_POST['containerId'])) {
-			update_option('simple_gtm', $_POST['containerId']);
-		}
-
 		// get option
-		$containerId = get_option('simple_gtm');
+		$containerId = get_option('simplegtm_containerid');
 
 		// show form on admin page
 		include_once( 'partials/simple-gtm-plugin-admin-display.php' );
+	}
+
+	/**
+	 * Add plugin setting link
+	 */
+	function plugin_action_links( $links ) {
+
+		$settings_link = '<a href="tools.php?page=simple-gtm-plugin">' . __( 'Settings', 'simple-gtm-plugin' ) . '</a>';
+
+		array_push( $links, $settings_link );
+
+		return $links;
 	}
 
 }
