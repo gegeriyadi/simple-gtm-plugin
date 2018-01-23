@@ -17,7 +17,7 @@ This plugin lets you add a Google Tag Manager code to your WordPress website wit
 
 ### Screenshots ###
 
-[Setting plugin page](https://github.com/gegeriyadi/whatsapp-wpchat/blob/master/public/img/2018-01-17_154314.png)
+[Setting plugin page](https://github.com/gegeriyadi/simple-gtm-plugin/blob/master/public/img/2018-01-23_141626.png)
 
 ### Contact & Feedback ###
 
